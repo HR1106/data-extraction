@@ -1,9 +1,26 @@
-import os
-import pdfplumber
-
-os.system(f'ocrmypdf --skip-text 39_Previous_Papers_Indian_History_CSAT_Paper_I_Civil_Services_Exam.pdf output.pdf')
-
-with pdfplumber.open('output.pdf') as pdf:
-  page=pdf.pages[3]
-  text=page.extract_text()
-  print(text)
+import io
+from PIL import Image
+import pytesseract
+from pdf2image import convert_from_path
+pdf="hr1.pdf"
+pages = convert_from_path(pdf)
+image_counter = 1 
+for page in pages: 
+  
+    filename = "page_"+str(image_counter)+".jpg"
+      
+    page.save(filename, 'JPEG') 
+    
+    image_counter = image_counter + 1
+filelimit = image_counter-1
+outfile = "out_text.txt"
+f = open(outfile, "a")
+for i in range(1, filelimit + 1):  
+    filename = "page_"+str(i)+".jpg"
+           
+    text = str(((pytesseract.image_to_string(Image.open(filename))))) 
+  
+    text = text.replace('-\n', '')     
+  
+    f.write(text)
+f.close()
