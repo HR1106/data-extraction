@@ -5,5 +5,5 @@ os.system(f'ocrmypdf --skip-text 39_Previous_Papers_Indian_History_CSAT_Paper_I_
 
 with pdfplumber.open('output.pdf') as pdf:
   page=pdf.pages[3]
-  text=page.extract_text(x_tolerance=2)
+  text=page.extract_text()
   print(text)
