@@ -13,7 +13,7 @@ for i in range(2,page):
     finalpic.writePNG(str(i)+".png")
     pic=None
     finalpic=None
-outfile = "out_text.txt"
+outfile = "output.txt"
 f = open(outfile, "a")
 for i in range(2,page):  
     filename = str(i)+".png"
