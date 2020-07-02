@@ -18,7 +18,8 @@ f = open(outfile, "a")
 for i in range(2,page):  
     filename = str(i)+".png"
            
-    text = str(((pytesseract.image_to_string(Image.open(filename)))))  
+    text = str(((pytesseract.image_to_string(Image.open(filename)))))
+    text = text.replace('39 Previous Papers History CSAT Paper — I', '')
   
     f.write(text)
 f.close()
